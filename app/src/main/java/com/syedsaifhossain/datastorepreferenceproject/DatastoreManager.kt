@@ -10,21 +10,49 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "ThreadAppStore")
-
 class DatastoreManager(private val context: Context) {
+
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "DataStoreManager")
+
+    companion object{
+        val EMAIL = stringPreferencesKey("email")
+        val PADSSWORD = stringPreferencesKey("password")
+        val CONFIRMPASSWORD = stringPreferencesKey("confirmPassword")
+    }
+
     // Save a string value in the DataStore
-    suspend fun saveString(key: String, value: String) {
-        val dataStoreKey = stringPreferencesKey(key)
-        context.dataStore.edit { preferences ->
-            preferences[dataStoreKey] = value
+
+    suspend fun saveString(email: String, password: String,confirmPassword:String) {
+
+        context.dataStore.edit { preferences->
+            preferences[EMAIL] = email
+            preferences[PADSSWORD] = password
+            preferences[CONFIRMPASSWORD] = confirmPassword
+
         }
     }
 
-    fun getString(key: String, defaultValue: String?): Flow<String?> {
-        val dataStoreKey = stringPreferencesKey(key)
+    fun getEmail(): Flow<String?> {
         return context.dataStore.data.map { preferences ->
-            preferences[dataStoreKey] ?: defaultValue
+            preferences[EMAIL]?:"Email is incorrect"
         }
     }
+
+    fun getPassword(): Flow<String?> {
+        return context.dataStore.data.map { preferences ->
+            preferences[PADSSWORD]?:"Password is incorrect"
+        }
+    }
+
+    fun getConfirmPassword(): Flow<String?> {
+        return context.dataStore.data.map { preferences ->
+            preferences[CONFIRMPASSWORD]?:"Password not match"
+        }
+    }
+
 }
+
+
+
+
+

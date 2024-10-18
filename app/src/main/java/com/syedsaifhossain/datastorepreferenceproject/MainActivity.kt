@@ -1,74 +1,52 @@
 package com.syedsaifhossain.datastorepreferenceproject
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.syedsaifhossain.datastorepreferenceproject.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var email : EditText
-    private lateinit var password : EditText
-    private lateinit var confirmPassword : EditText
-    private lateinit var saveButton : Button
-    private lateinit var displayEmail : TextView
-    private lateinit var displayPassword : TextView
-    private lateinit var displayConfirmPassword : TextView
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var datastoreManager: DatastoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        email = findViewById(R.id.email)
-        password = findViewById(R.id.password)
-        confirmPassword = findViewById(R.id.confirmPassword)
-        saveButton = findViewById(R.id.save)
-        displayEmail = findViewById(R.id.displayEmail)
-        displayPassword = findViewById(R.id.displayPassword)
-        displayConfirmPassword = findViewById(R.id.displayConfirmPassword)
+
+        setContentView(binding.root)
         datastoreManager = DatastoreManager(this)
-        saveButton.setOnClickListener{
+        binding.save.setOnClickListener{
+
             lifecycleScope.launch {
-                saveCredentials(
-                    email.text.toString(),
-                    password.text.toString(),
-                    confirmPassword.text.toString(),
+                datastoreManager.saveString(
 
+                    binding.email.text.toString(),
+                    binding.password.text.toString(),
+                    binding.confirmPassword.text.toString()
                 )
-
-                retrieveCredentials()
             }
+
+            lifecycleScope.launch {
+                datastoreManager.getEmail().collect {
+                    binding.displayEmail.text = it.toString()
+                }
+            }
+
+                lifecycleScope.launch {
+                    datastoreManager.getPassword().collect {
+                        binding.displayPassword.text = it.toString()
+                }
         }
-    }
 
-    suspend fun saveCredentials(email: String, password: String, confirmPassword: String) {
-        datastoreManager.saveString("email", email)
-        datastoreManager.saveString("password", password)
-        datastoreManager.saveString("confirmPassword", confirmPassword)
-    }
-    private fun retrieveCredentials() {
-        lifecycleScope.launch {
-            datastoreManager.getString("email", "").collect { emailValue ->
-                displayEmail.text = emailValue
+            lifecycleScope.launch {
+                datastoreManager.getConfirmPassword().collect {
+                    binding.displayConfirmPassword.text = it.toString()
+                }
             }
-
-            datastoreManager.getString("password", "").collect { passwordValue ->
-                displayPassword.text = passwordValue
-
-            }
-            datastoreManager.getString("confirmPassword", "").collect { confirmPasswordValue ->
-                displayConfirmPassword.text = confirmPasswordValue
-            }
-        }
     }
-
+    }
 }
-
-
-
-

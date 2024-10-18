@@ -6,114 +6,119 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#77BBDE">
+    android:background="#77BBDE"
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
+        android:layout_height="55dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:hint="Eneter your email"
-        android:layout_marginTop="50dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="20dp"
-        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/edit_background"
+        android:hint="Eneter your email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="30dp"
         android:textColor="@color/black"
         android:textSize="23sp"
-        android:background="@drawable/edit_background"
-        android:paddingLeft="30dp"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:hint="Eneter your password"
+        android:layout_height="55dp"
         android:layout_below="@id/email"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="20dp"
-        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_background"
+        android:hint="Eneter your password"
+        android:inputType="textPassword"
+        android:paddingLeft="30dp"
         android:textColor="@color/black"
         android:textSize="23sp"
-        android:background="@drawable/edit_background"
-        android:paddingLeft="30dp"/>
+        android:textStyle="bold" />
 
 
     <EditText
         android:id="@+id/confirmPassword"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
+        android:layout_height="55dp"
+        android:layout_below="@id/password"
         android:layout_alignParentStart="true"
-        android:hint="Confirm your password"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="20dp"
-        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_background"
+        android:hint="Confirm your password"
+        android:inputType="textPassword"
+        android:paddingLeft="30dp"
         android:textColor="@color/black"
         android:textSize="23sp"
-        android:layout_below="@id/password"
-        android:background="@drawable/edit_background"
-        android:paddingLeft="30dp"/>
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/save"
+        style="@style/Widget.Material3.Button.IconButton.Outlined"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_below="@id/confirmPassword"
-        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="20dp"
-        android:textSize="30sp"
-        android:textColor="#095B34"
-        android:textStyle="bold"
+        android:layout_marginTop="30dp"
         android:text="Save"
-        app:strokeWidth="3dp"
+        android:textColor="#095B34"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:strokeColor="#58BA1C"
-        style="@style/Widget.Material3.Button.IconButton.Outlined"/>
+        app:strokeWidth="3dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
 
 
     <TextView
-    android:id="@+id/displayEmail"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/save"
-    android:layout_marginTop="50dp"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    android:textSize="30sp"
-    android:layout_marginHorizontal="20dp"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentEnd="true"
-    android:padding="10dp"/>
+        android:id="@+id/displayEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/save"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="50dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/displayPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/displayEmail"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginHorizontal="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:padding="10dp"/>
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/displayConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/displayPassword"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginHorizontal="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:padding="10dp"/>
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

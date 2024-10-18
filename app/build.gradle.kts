@@ -3,7 +3,11 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+
 android {
+    buildFeatures{
+        viewBinding = true
+    }
     namespace = "com.syedsaifhossain.datastorepreferenceproject"
     compileSdk = 34
 
